@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Chat App</title>
+  
+  <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script defer src="script.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <style>
+    #message-container {
+      text-align: left;
+    }
+    #message-container div {
+      background-color: #CCC;
+      width: 99%;
+      padding: 5px;
+    }
+    #message-container div:nth-child(2n) {
+      background-color: #FFF;
+    }
+    #send-container {
+      position: fixed;
+      padding-bottom: 30px;
+      bottom: 0;
+      background-color: white;
+      width: 70%;
+      display: flex;
+    }
+    #message-input {
+      flex-grow: 1;
+    }
+
+    .sidenav {
+      width: 400px;
+      height: 75%;
+      position: fixed;
+      background-color: #FFBF00;
+    }
+
+    .main {
+      margin-left: 410px;
+    }
+  </style>
+</head>
+<body>
+  <!--Header-->
+  <div class="contianer-fluid text-center bg-primary text-white pb-1" style="margin-bottom:0">
+    <h1 >Welcome to Chatrooms👋</h1>
+    <p>Create or join rooms and start chatting!</p>
+  </div>
+
+  <div class="contianer-fluid text-center bg-success text-white mt-1 mb-1 p-1">
+    <h4 id="headingRoomName"></h4>
+  </div>
+
+  <div class="contianer-fluid text-center">
+    <div class="sidenav ml-1 mr-1">
+      <img src="https://seoversite.com/wp-content/uploads/2020/01/giphy.gif" style="width: 400px;">
+      <h5>Realtime Chatroom</h5>
+      <h6>Developed with ❤️ in <strong>India</strong>!</h6>
+    </div>
+  
+    <div class="main">
+      <div id="message-container"></div>
+      <form id="send-container">
+        <div class="input-group">
+          <input type="text" id="message-input" class="form-control" placeholder="Start typing...">
+          <div class="input-group-append">
+            <button id="send-button" class="btn btn-primary" style="width: 100px; margin-right: 10px;" type="submit">Send</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>  
+
+  <script>
+    const roomName = "<%= roomName %>";
+    document.getElementById("headingRoomName").innerHTML = "Room Name: " + roomName;
+  </script>
+</body>
+</html>

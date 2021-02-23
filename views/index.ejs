@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Chat App</title>
+
+  <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script defer src="script.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <style>
+    .sidenav {
+      width: 400px;
+      height: 63%;
+      position: fixed;
+      background-color: #FFBF00;
+    }
+
+    .main {
+      margin-left: 400px;
+      width: 500px;
+    }
+  </style>
+</head>
+<body>
+  <!--Header-->
+  <div class="jumbotron text-center bg-primary text-white" style="margin-bottom:0">
+    <h1 >Welcome to Chatrooms👋</h1>
+    <p>Create or join rooms and start chatting!</p> 
+  </div>
+  
+  <!--Hero Section-->
+  <div class="contianer-fluid text-center p-1">
+    <div class="sidenav mr-1">
+      <img src="https://seoversite.com/wp-content/uploads/2020/01/giphy.gif" style="width: 300px;">
+      <h5>Realtime Chatroom</h5>
+      <h6>Developed with ❤️ in <strong>India</strong>!</h6>
+    </div>
+  
+    <div class="main">
+      <div class="contianer p-3">     
+        <form action="/room" method="POST">
+          <div class="input-group mb-3" style="width:500px">
+            <label class="form-control" style="font-weight: bold;">Create New Room</label>
+            <input name="room" type="text" class="form-control" placeholder="Room name" required>
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="submit">New Room</button>
+            </div>
+          </div>
+        </form> 
+        
+        <div class="table pl-1" id="room-container" style="width: 400px;text-align: left;">
+          <% Object.keys(rooms).forEach(room => { %>
+            <div class="row mb-2">
+              <div class="col">
+                <label><b>Active Room: </b></label>
+                <%= room %>
+              </div>
+              <div class="col">
+                <a class="btn btn-success p-1" href="/<%= room %>" target="_blank" style="width: 80px;">Join</a>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
